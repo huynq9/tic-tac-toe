@@ -15,7 +15,7 @@ export const Board = () => {
 
   const handleClick = (index) => {
     const nextSquares = squares.slice();
-    if (checkWinner[squares] || squares[index]) {
+    if (checkWinner(squares) || squares[index]) {
       return;
     }
 
@@ -30,10 +30,16 @@ export const Board = () => {
   };
 
   return (
-    <div>
-      <h1>TIC_TAC_TOE</h1>
+    <div className="text-center">
+      <h1 className="text-center">TIC TAC TOE</h1>
       <div className="status">{status}</div>
-      <div className="board-row">
+      <button
+        className="border p-5 bg-black text-white "
+        onClick={() => setSquares(Array(9).fill(null))}
+      >
+        Click to start
+      </button>
+      <div className="board-row ">
         <Square
           value={squares[0]}
           onSquareClick={() => handleClick(0)}
@@ -78,6 +84,7 @@ export const Board = () => {
     </div>
   );
 };
+
 function checkWinner(squares) {
   const lines = [
     [0, 1, 2],
